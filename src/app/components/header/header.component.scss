@@ -1,0 +1,44 @@
+.app-header {
+    padding: 1% 0;
+    background: #ee0979; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ff6a00, #ee0979); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+        to right,
+        #ff6a00,
+        #ee0979
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    min-height: 2vh;
+    
+    mat-toolbar{
+        background: inherit;
+    }
+
+    &-menu-icon {
+        margin-right: 1%;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        outline: none;
+    }
+    &-spacer {
+        flex: 1 1 auto;
+    }
+
+    &-title {
+        padding: 3px;
+        border: 2px solid;
+        border-right: none;
+        border-left: none;
+        color: #000;
+        transition: all 0.2s;
+        cursor: pointer;
+        outline: none;
+    }
+
+    &-title:hover {
+        border: 2px solid #000;
+        border-top: 2px solid transparent;
+        border-bottom:2px solid transparent;
+    }
+}
