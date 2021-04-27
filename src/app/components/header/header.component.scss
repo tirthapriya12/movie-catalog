@@ -1,3 +1,5 @@
+$black: #000;
+
 .app-header {
     padding: 1% 0;
     background: #ee0979; /* fallback for old browsers */
@@ -9,8 +11,8 @@
     ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
     min-height: 2vh;
-    
-    mat-toolbar{
+
+    mat-toolbar {
         background: inherit;
     }
 
@@ -26,19 +28,20 @@
     }
 
     &-title {
+        font-weight: 700;
         padding: 3px;
         border: 2px solid;
-        border-right: none;
-        border-left: none;
-        color: #000;
-        transition: all 0.2s;
+        border-right: 2px solid transparent;
+        border-left: 2px solid transparent;
+        color: $black;
+        transition: all 0.4s;
         cursor: pointer;
         outline: none;
     }
 
     &-title:hover {
-        border: 2px solid #000;
+        border: 2px solid $black;
         border-top: 2px solid transparent;
-        border-bottom:2px solid transparent;
+        border-bottom: 2px solid transparent;
     }
 }

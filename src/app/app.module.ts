@@ -18,12 +18,16 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 //ngRx imports
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { homeReducer } from './pages/home/reducers/home.reducer';
 import { HomeEffect } from './pages/home/effects/home.effect';
+import { HomeResolver } from './pages/home/services/home.resolver';
+import { metaReducers } from './reducer';
 
 
 @NgModule({
@@ -44,7 +48,10 @@ import { HomeEffect } from './pages/home/effects/home.effect';
     MatGridListModule,
     IvyCarouselModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
     StoreModule.forRoot({ home: homeReducer }, {
+      metaReducers,
       runtimeChecks: {
         strictStateImmutability: true,
         strictActionImmutability: true,
@@ -54,7 +61,7 @@ import { HomeEffect } from './pages/home/effects/home.effect';
     }),
     EffectsModule.forRoot([HomeEffect])
   ],
-  providers: [],
+  providers: [HomeResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

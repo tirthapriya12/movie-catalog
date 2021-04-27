@@ -1,8 +1,41 @@
 <section class="app-home">
-    <mat-grid-list cols="1" rowHeight="20vh">
-        <mat-grid-tile>1</mat-grid-tile>
-        <mat-grid-tile>2</mat-grid-tile>
-        <mat-grid-tile>3</mat-grid-tile>
-        <mat-grid-tile>4</mat-grid-tile>
-    </mat-grid-list>
+    <section class="popular-section">
+        <h2>What's Popular </h2>
+        <carousel [height]="300" [cellWidth]="160" [lightDOM]="true" class="carousel">
+            <div class="carousel-cell" *ngFor="let item of popularMovies$ | async">
+                <img [title]="item.title" [src]="item.poster_path">
+                <div class="carousel-cell-content">
+                    <h3>{{item.title}}</h3>
+                    <label>Rating: </label><span>{{item.vote_average*10}}%</span>
+                </div>
+            </div>
+        </carousel>
+    </section>
+
+    <section class="nowplaying-section">
+        <h2>Now Playing </h2>
+        <carousel [height]="300" [cellWidth]="160" [lightDOM]="true" class="carousel">
+            <div class="carousel-cell" *ngFor="let item of nowPlayingMovies$ | async">
+                <img [title]="item.title" [src]="item.poster_path">
+                <div class="carousel-cell-content">
+                    <h3>{{item.title}}</h3>
+                    <label>Rating: </label><span>{{item.vote_average*10}}%</span>
+                </div>
+            </div>
+        </carousel>
+    </section>
+
+    <section class="trending-section">
+        <h2>Trending </h2>
+        <carousel [height]="300" [cellWidth]="160" [lightDOM]="true" class="carousel">
+            <div class="carousel-cell" *ngFor="let item of trending$ | async">
+                <img [title]="item.title || item.name" [src]="item.poster_path">
+                <div class="carousel-cell-content">
+                    <h3>{{item.title || item.name}}</h3>
+                    <label>Rating: </label><span>{{item.vote_average*10}}%</span>
+                </div>
+            </div>
+        </carousel>
+    </section>
+
 </section>

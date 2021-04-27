@@ -1,6 +1,6 @@
 .app-container {
     width: 100%;
-    height: calc(100% - 8.5vh);
+    min-height: calc(100% - 8.5vh);
     background: inherit;
 }
 
@@ -17,6 +17,7 @@
         color: inherit;
     }
 }
+
 
 @media screen and (max-width: 600px) {
     .app-sidenav {

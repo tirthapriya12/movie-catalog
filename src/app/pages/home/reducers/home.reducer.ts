@@ -13,7 +13,8 @@ const initial_state = {
         streaming: [],
         upcoming: [],
         trailers: []
-    }
+    },
+    trending: []
 }
 const _homeReducer = createReducer(initial_state,
     on(HomeActions.getPopularMoviesSuccess, (state, action) => {
@@ -26,6 +27,12 @@ const _homeReducer = createReducer(initial_state,
         return {
             ...state,
             movies: { ...state.movies, nowPlaying: action.nowPlaying }
+        }
+    }),
+    on(HomeActions.getTrendingSuccess, (state, action) => {
+        return {
+            ...state,
+            trending: action.trending
         }
     })
 )

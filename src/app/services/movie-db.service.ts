@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MOVIEDB_API } from '../constants/constant';
-import { concatMap, take, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -34,22 +34,33 @@ export class MovieDBService {
     })
   }
 
-  getPopularMovies() {
-    let query = {
-      region: 'IN', //keeping it constant for now
+  setImagePaths = (item: any) => {
+    const { images } = this.tmdbConfig;
+    if (item.backdrop_path) {
+      item.backdrop_path = (images.secure_base_url + images.backdrop_sizes[2] + item.backdrop_path).replace(/\/\//g, '/');
     }
-    return this.http.get(this.constructURL('movie/popular', query)).pipe(map((resp: any) => resp.results));
+    if (item.poster_path) {
+      item.poster_path = (images.secure_base_url + images.poster_sizes[3] + item.poster_path).replace(/\/\//g, '/');
+    }
+    return item;
   }
 
-  getNowPlayingMovies() {
+  getPopularMovies(region: string = 'IN') {
     let query = {
-      region: 'IN', //keeping it constant for now
+      region, //keeping it constant for now
     }
-    return this.http.get(this.constructURL('movie/now_playing', query)).pipe(map((resp: any) => resp.results));
+    return this.http.get(this.constructURL('movie/popular', query)).pipe(map((resp: any) => resp.results.map(this.setImagePaths)));
+  }
+
+  getNowPlayingMovies(region: string = 'IN') {
+    let query = {
+      region //keeping it constant for now
+    }
+    return this.http.get(this.constructURL('movie/now_playing', query)).pipe(map((resp: any) => resp.results.map(this.setImagePaths)));
   }
 
   getTrending() {
-    return this.http.get(this.constructURL('trending/all/week')).pipe(map((resp: any) => resp.results));
+    return this.http.get(this.constructURL('trending/all/week')).pipe(map((resp: any) => resp.results.map(this.setImagePaths)));
   }
 
 
