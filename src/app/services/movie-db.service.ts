@@ -36,11 +36,12 @@ export class MovieDBService {
 
   setImagePaths = (item: any) => {
     const { images } = this.tmdbConfig;
+    let base_url = window.location.host.match(/localhost/) ? images.secure_base_url : images.base_url;
     if (item.backdrop_path) {
-      item.backdrop_path = (images.secure_base_url + images.backdrop_sizes[2] + item.backdrop_path).replace(/\/\//g, '/');
+      item.backdrop_path = (base_url + images.backdrop_sizes[2] + item.backdrop_path).replace(/\/\//g, '/');
     }
     if (item.poster_path) {
-      item.poster_path = (images.secure_base_url + images.poster_sizes[3] + item.poster_path).replace(/\/\//g, '/');
+      item.poster_path = (base_url + images.poster_sizes[3] + item.poster_path).replace(/\/\//g, '/');
     }
     return item;
   }
